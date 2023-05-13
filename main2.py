@@ -1,39 +1,17 @@
 def compute_prefix_function(pattern):
-    prefix = [0]
-    m = len(pattern)
+    prefix = [0] * len(pattern)
     length = 0
-    i = 1
-    while i < m:
+
+    for i in range(1, len(pattern)):
+        while length > 0 and pattern[i] != pattern[length]:
+            length = prefix[length - 1]
+
         if pattern[i] == pattern[length]:
             length += 1
-            prefix.append(length)
-            i += 1
-        else:
-            if length != 0:
-                length = prefix[length - 1]
-            else:
-                prefix.append(0)
-                i += 1
+
+        prefix[i] = length
+
     return prefix
 
 
-def KMP_search(text, pattern):
-    n = len(text)
-    m = len(pattern)
-    prefix = compute_prefix_function(pattern)
-    occurrences = []
-    i = 0  # index for text
-    j = 0  # index for pattern
-    while i < n:
-        if pattern[j] == text[i]:
-            i += 1
-            j += 1
-        if j == m:
-            occurrences.append(i - j)
-            j = prefix[j - 1]
-        elif i < n and pattern[j] != text[i]:
-            if j != 0:
-                j = prefix[j - 1]
-            else:
-                i += 1
-    return occurrences
+print(compute_prefix_function("ABABCABAB"))
