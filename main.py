@@ -1,3 +1,5 @@
-n, m = input().split()
+line = input()
 
-for x in m:
+equation = [i for i in line]
+
+print(equation)
