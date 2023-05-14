@@ -13,8 +13,20 @@ class LinkedList:
         self.nodes = deque([])
 
     def insert_head(self, x):
-        node = Node(x, self.head.next)
-        self.head.next = node
+        """
+        插入头节点之前，会有下面三种情况
+        0 -> 0 ->   self.head.next is not None
+        0 -> N      else
+        插入节点之后
+        n -> 0 ->
+        n -> N
+        """
+        if self.head.next is not None:
+            node = Node(x, self.head)
+        else:
+            node = Node(x, None)
+
+        self.head = node
         self.nodes.appendleft(node)
 
     def insert_after(self, k, x):
