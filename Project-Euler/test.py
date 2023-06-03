@@ -1,21 +1,18 @@
-def f(n):
-    if n <= 2:
-        return 1
-    else:
-        return f(n - 1) + f(n - 2)
-
-
-def isEven(n):
-    if n % 2 != 0:
-        return True
-    else:
+def is_prime(num):
+    if num < 2:
         return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
 
 
-answer = 0
-for i in range(1, 400):
-    if isEven(f(i)):
-        answer += f(i)
+def prime_factors(n):
+    factors = []
+    for i in range(2, n + 1):
+        while is_prime(i) and n % i == 0:
+            factors.append(i)
+            n //= i
+    return factors
 
 
-print(answer)
