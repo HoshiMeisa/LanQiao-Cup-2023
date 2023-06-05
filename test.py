@@ -1,68 +1,25 @@
-from collections import deque  # 使用deque的好处在于，可以直接往左边插入节点
+def combination_sum(nums, target):
+    def dfs(start, path, cur_sum):
+        # 下面针对每次搜索完的时候
+        # 如果当前和等于目标值，说明当前路径就是目标路径，可以添加到结果中返回
+        if cur_sum == target:
+            result.append(path[:])
+            return
+        # 如果已经超出，说明此路径不是目标路径
+        if cur_sum > target:
+            return
+
+        # 如果还不足，继续进行搜索
+        for i in range(start, len(nums)):
+            path.append(nums[i])    # 将当前数字添加到路径中
+            dfs(i, path, cur_sum + nums[i])     # 调用递归进行搜索，搜索范围从i开始，总合是当前的总和加上当前搜索到的数字
+            path.pop()      # 移除最后添加的节点，回溯到上一个节点，尝试其他可能的路径
+
+    result = []     # 初始化结果列表
+    dfs(0, [], 0)   # 开始搜索
+    return result   # 返回搜索结果
 
 
-class Node:
-    def __init__(self, value=0, next=None):
-        self.value = value
-        self.next = next
-
-
-class LinkedList:
-    def __init__(self):
-        self.head = Node()
-        self.nodes = deque([])
-
-    def insert_head(self, x):
-        node = Node(x, self.head.next)
-        self.head.next = node
-        self.nodes.appendleft(node)
-
-    def insert_after(self, k, x):
-        if k <= 0 or k > len(self.nodes):
-            return "Invalid position"
-        else:
-            prev = self.nodes[k - 1]
-            node = Node(x, prev.next)
-            prev.next = node
-            self.nodes.insert(k, node)
-
-    def delete_after(self, k):
-        if k < 0 or k >= len(self.nodes):
-            return "Invalid position"
-        else:
-            if k == 0:
-                node = self.head
-            else:
-                node = self.nodes[k - 1]
-            node.next = node.next.next
-            self.nodes = deque(list(self.nodes)[:k])
-
-    def print_linked_list(self):
-        node = self.head.next
-        while node:
-            print(node.value, end=' ')
-            node = node.next
-        print()
-
-
-def main():
-    M = int(input())
-    linked_list = LinkedList()
-
-    for _ in range(M):
-        operation = input().split()
-
-        if operation[0] == 'H':
-            linked_list.insert_head(int(operation[1]))
-
-        elif operation[0] == 'D':
-            linked_list.delete_after(int(operation[1]))
-
-        elif operation[0] == 'I':
-            linked_list.insert_after(int(operation[1]), int(operation[2]))
-
-    linked_list.print_linked_list()
-
-
-if __name__ == "__main__":
-    main()
+nums = [2, 3, 6, 7]
+target = 7
+print(combination_sum(nums, target))
