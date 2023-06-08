@@ -20,6 +20,22 @@ def combination_sum(nums, target):
     return result   # 返回搜索结果
 
 
-nums = [2, 3, 6, 7]
-target = 7
-print(combination_sum(nums, target))
+def combination_sum(nums, target):
+    def DFS(start, path, cur_num):
+        if cur_num == target:
+            result.append(path[:])
+            return
+
+        if cur_num > target:
+            return
+
+        for i in range(start, len(nums)):
+            
+
+
+    result = []
+
+
+_nums = [2, 3, 6, 7]
+_target = 7
+print(combination_sum(_nums, _target))

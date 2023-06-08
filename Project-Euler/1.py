@@ -1,21 +1,5 @@
-def combination_sum(nums, target):
-    def DFS(start, path, current_sum):
-        if current_sum == target:
-            result.append(path[:])
-            return
+i = 12345678
 
-        if current_sum > target:
-            return
 
-        for i in range(start, len(nums)):
-            path.append(nums[i])
-            DFS(i, path, current_sum + nums[i])
-            path.pop()
-
-    result = []
-    DFS(0, [], 0)
-    return result
-
-nums = [2, 3, 6, 7]
-target = 7
-print(combination_sum(nums, target))
+print(str(i)[0:2], str(i)[2:4])
+print(str(i)[5:3:-1], str(i)[7:5:-1])
