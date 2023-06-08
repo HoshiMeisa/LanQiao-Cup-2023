@@ -1,4 +1,6 @@
 # 质因数分解
+import time
+
 
 def prime_factors(n):
     factors = []
@@ -19,6 +21,7 @@ def prime_factors(n):
 
 
 a, b = map(int, input().split())
+start = time.time()
 
 for i in range(a, b + 1):
     factor = prime_factors(i)
@@ -31,3 +34,6 @@ for i in range(a, b + 1):
             print("*", end="")
 
     print()
+
+end = time.time()
+print(end - start)
