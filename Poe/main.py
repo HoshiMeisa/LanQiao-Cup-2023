@@ -12,3 +12,5 @@ for chunk in client.send_message("capybara", message, with_chat_break=True):
 
 # delete the 3 latest messages, including the chat break
 client.purge_conversation("capybara", count=3)
+
+
