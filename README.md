@@ -1,6 +1,6 @@
 # LanQiao-Cup-2023
 
-PB group, from provincial first prize to national excellence. 
+PB group, from provincial first prize to national excellence prize. 
 
 I have accomplished my aspiration, originating from my high school era, to partake in sophisticated algorithmic competition.
 
